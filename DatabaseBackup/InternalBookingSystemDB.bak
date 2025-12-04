@@ -1,0 +1,42 @@
+-- Create Database
+CREATE DATABASE InternalBookingSystemDB;
+GO
+
+USE InternalBookingSystemDB;
+GO
+
+-- Create Resources Table
+CREATE TABLE Resources (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(MAX) NULL,
+    Location NVARCHAR(200) NULL,
+    Capacity INT NOT NULL,
+    IsAvailable BIT NOT NULL DEFAULT 1
+);
+GO
+
+-- Create Bookings Table
+CREATE TABLE Bookings (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ResourceId INT NOT NULL,
+    StartTime DATETIME2 NOT NULL,
+    EndTime DATETIME2 NOT NULL,
+    BookedBy NVARCHAR(200) NOT NULL,
+    Purpose NVARCHAR(200) NOT NULL,
+
+    CONSTRAINT FK_Bookings_Resources FOREIGN KEY (ResourceId)
+        REFERENCES Resources(Id)
+        ON DELETE CASCADE
+);
+GO
+
+-- Optional: Insert sample Resources (you can remove these)
+INSERT INTO Resources (Name, Description, Location, Capacity, IsAvailable)
+VALUES
+('Meeting Room Alpha', 'Large room with projector', '3rd Floor West Wing', 12, 1),
+('Company Car 1', 'Sedan vehicle', 'Parking Bay 5', 4, 1),
+('Boardroom Delta', 'Executive boardroom', '1st Floor East', 20, 1);
+GO
+
+PRINT 'InternalBookingSystemDB created successfully!';
