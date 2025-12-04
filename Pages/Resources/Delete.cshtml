@@ -1,0 +1,14 @@
+@page
+@model InternalBookingSystem.Pages.Resources.DeleteModel
+
+<h2>Delete Resource</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete <strong>@Model.Resource.Name</strong>?
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Resource.Id" />
+    <button class="btn btn-danger">Yes, Delete</button>
+    <a class="btn btn-secondary" href="/Resources">Cancel</a>
+</form>

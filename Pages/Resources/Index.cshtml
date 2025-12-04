@@ -1,0 +1,33 @@
+@page
+@model InternalBookingSystem.Pages.Resources.IndexModel
+<h2>Resources</h2>
+
+<a class="btn btn-primary mb-3" href="/Resources/Create">Add Resource</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th>Available?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model.ResourceList)
+        {
+            <tr>
+                <td>@r.Name</td>
+                <td>@r.Location</td>
+                <td>@r.Capacity</td>
+                <td>@(r.IsAvailable ? "Yes" : "No")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="/Resources/Details?id=@r.Id">Details</a>
+                    <a class="btn btn-sm btn-warning" href="/Resources/Edit?id=@r.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/Resources/Delete?id=@r.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

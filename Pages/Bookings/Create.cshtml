@@ -1,0 +1,53 @@
+@page
+@model InternalBookingSystem.Pages.Bookings.CreateModel
+
+<h2>Add Booking</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <div class="mb-3">
+        <label>Resource</label>
+        <select asp-for="Booking.ResourceId" class="form-control">
+            <option value="">Select a Resource</option>
+
+            @foreach (var r in Model.Resources)
+            {
+                <option value="@r.Id" @(r.IsAvailable ? "" : "disabled")>
+                    @r.Name (@(r.IsAvailable ? "Available" : "Unavailable"))
+                </option>
+            }
+        </select>
+        <span class="text-danger" asp-validation-for="Booking.ResourceId"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Start Time</label>
+        <input asp-for="Booking.StartTime" type="datetime-local" class="form-control" />
+        <span class="text-danger" asp-validation-for="Booking.StartTime"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>End Time</label>
+        <input asp-for="Booking.EndTime" type="datetime-local" class="form-control" />
+        <span class="text-danger" asp-validation-for="Booking.EndTime"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Booked By</label>
+        <input asp-for="Booking.BookedBy" class="form-control" />
+        <span class="text-danger" asp-validation-for="Booking.BookedBy"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Purpose</label>
+        <input asp-for="Booking.Purpose" class="form-control" />
+        <span class="text-danger" asp-validation-for="Booking.Purpose"></span>
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" href="/Bookings">Cancel</a>
+</form>

@@ -1,0 +1,14 @@
+@page
+@model InternalBookingSystem.Pages.Bookings.DetailsModel
+
+<h2>Booking Details</h2>
+
+<div class="card p-3">
+    <p><strong>Resource:</strong> @Model.Booking.Resource.Name</p>
+    <p><strong>Start:</strong> @Model.Booking.StartTime</p>
+    <p><strong>End:</strong> @Model.Booking.EndTime</p>
+    <p><strong>Booked By:</strong> @Model.Booking.BookedBy</p>
+    <p><strong>Purpose:</strong> @Model.Booking.Purpose</p>
+</div>
+
+<a class="btn btn-secondary mt-3" href="/Bookings">Back</a>

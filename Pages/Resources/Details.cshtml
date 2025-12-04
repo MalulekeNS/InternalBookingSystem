@@ -1,0 +1,32 @@
+@page
+@model InternalBookingSystem.Pages.Resources.DetailsModel
+<h2>Resource Details</h2>
+
+<div class="card p-3 mb-4">
+    <h4>@Model.Resource.Name</h4>
+    <p><strong>Description:</strong> @Model.Resource.Description</p>
+    <p><strong>Location:</strong> @Model.Resource.Location</p>
+    <p><strong>Capacity:</strong> @Model.Resource.Capacity</p>
+    <p><strong>Available:</strong> @(Model.Resource.IsAvailable ? "Yes" : "No")</p>
+</div>
+
+<h4>Upcoming Bookings</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>Booked By</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model.Bookings)
+        {
+            <tr>
+                <td>@b.StartTime.ToString("g")</td>
+                <td>@b.EndTime.ToString("g")</td>
+                <td>@b.BookedBy</td>
+            </tr>
+        }
+    </tbody>
+</table>

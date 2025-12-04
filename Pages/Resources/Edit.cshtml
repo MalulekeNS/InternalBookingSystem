@@ -1,0 +1,38 @@
+@page
+@model InternalBookingSystem.Pages.Resources.EditModel
+
+<h2>Edit Resource</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Resource.Id" />
+
+    <div class="mb-3">
+        <label>Name</label>
+        <input asp-for="Resource.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Resource.Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea asp-for="Resource.Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label>Location</label>
+        <input asp-for="Resource.Location" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Capacity</label>
+        <input asp-for="Resource.Capacity" class="form-control" />
+        <span class="text-danger" asp-validation-for="Resource.Capacity"></span>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input asp-for="Resource.IsAvailable" class="form-check-input" />
+        <label class="form-check-label">Available</label>
+    </div>
+
+    <button class="btn btn-primary">Save Changes</button>
+    <a class="btn btn-secondary" href="/Resources">Cancel</a>
+</form>

@@ -1,0 +1,46 @@
+@page
+@model InternalBookingSystem.Pages.Bookings.EditModel
+
+<h2>Edit Booking</h2>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">@Model.ErrorMessage</div>
+}
+
+<form method="post">
+    <input type="hidden" asp-for="Booking.Id" />
+
+    <div class="mb-3">
+        <label>Resource</label>
+        <select asp-for="Booking.ResourceId" class="form-control">
+            @foreach (var r in Model.Resources)
+            {
+                <option value="@r.Id" @(r.IsAvailable ? "" : "disabled")>@r.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Start Time</label>
+        <input asp-for="Booking.StartTime" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>End Time</label>
+        <input asp-for="Booking.EndTime" type="datetime-local" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Booked By</label>
+        <input asp-for="Booking.BookedBy" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Purpose</label>
+        <input asp-for="Booking.Purpose" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">Update</button>
+    <a class="btn btn-secondary" href="/Bookings">Cancel</a>
+</form>
